@@ -20,6 +20,8 @@ public class ButtonListener implements ActionListener {
             Main.gameOverWindow.setVisible(false);
             Main.gameData.marine.resetHealth();
             Main.gameData.marine.stopMoving();
+            
+            Main.gameData.setBossSpawned(false);
             //Main.gameData.boss.resetHealth();
             Main.animator.running = true;
             Main.gameData.timerListener.mutaCount = 0;

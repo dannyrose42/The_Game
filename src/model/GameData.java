@@ -23,6 +23,11 @@ public class GameData {
     public TimerListener timerListener;
     public Thread gameThread;
     public Boss boss;
+    private boolean bossSpawned = false;
+
+    public void setBossSpawned(boolean bossSpawned) {
+        this.bossSpawned = bossSpawned;
+    }
 
     public GameData() {
         enemys = Collections.synchronizedList(new ArrayList<GameFigure>());
@@ -31,7 +36,7 @@ public class GameData {
         deadBullets = Collections.synchronizedList(new ArrayList<GameFigure>());
         
         timerListener = new TimerListener();
-        mutaTimer = new Timer(10000, timerListener);
+        mutaTimer = new Timer(5000, timerListener);
         mutaTimer.setInitialDelay(3000);
         
         bossTimer = new Timer(3000, timerListener);
@@ -72,7 +77,8 @@ public class GameData {
     }
 
     public void checkGameCondition(){
-        if(enemys.isEmpty() && !mutaTimer.isRunning()){
+        if(enemys.isEmpty() && !mutaTimer.isRunning() && !bossSpawned){
+            bossSpawned = true;
             addBoss();
             mutaTimer.restart();
         }
