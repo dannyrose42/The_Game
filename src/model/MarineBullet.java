@@ -13,12 +13,10 @@ public class MarineBullet extends GameFigure {
     private final Color color;
     public double targetX, targetY, dx, dy;
     private final double damage = 50;
-    private final float moveDistance = 10;
+    private final float moveDistance = 20;
     Vector2f currentLocation;
     Vector2f targetPath;
     
- 
-
     
     public MarineBullet(double x, double y, double tx, double ty, Color color) {
         super(x, y, 3);

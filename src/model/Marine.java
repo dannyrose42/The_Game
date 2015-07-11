@@ -31,42 +31,61 @@ public class Marine extends GameFigure {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(launcherImage, (int)super.x, (int)super.y, (int)super.size, (int)super.size, null);
-        
+        g.drawImage(launcherImage, (int) super.x, (int) super.y, (int) super.size, (int) super.size, null);
+
         g.setColor(Color.red);
-        g.fillRect(3 , GamePanel.PHEIGHT - 102, 10, 100);
-        
+        g.fillRect(3, GamePanel.PHEIGHT - 102, 10, 100);
+
         g.setColor(Color.green);
-        g.fillRect(3 , GamePanel.PHEIGHT - (int)this.health-2, 10, (int)this.health);
+        g.fillRect(3, GamePanel.PHEIGHT - (int) this.health - 2, 10, (int) this.health);
     }
 
     @Override
     public void update() {
-        if(movingLeft)translate(-7, 0);
-        if(movingRight)translate(7,0);
-        if(jump)jump();
+        if (movingLeft) {
+            translate(-7, 0);
+        }
+        if (movingRight) {
+            translate(7, 0);
+        }
+        if (jump) {
+            jump();
+        }
     }
-    public void jump(){
+
+    public void jump() {
         jumpHeight += dy;
-        if(jumpHeight <= -70)dy = 7;
-        if(jumpHeight == 0){
+        if (jumpHeight <= -100) {
+            dy = 7;
+        }
+        if (jumpHeight == 0) {
             jump = false;
             dy = -7;
             super.y = GamePanel.PHEIGHT - 30;
             return;
         }
-        super.y += dy; 
+        super.y += dy;
     }
-    
+
     public void translate(int dx, int dy) {
-        if(super.x <= 0 && dx < 0)dx = 0;
-        if(((super.x + 30) >= GamePanel.PWIDTH) && (dx > 0))dx =0;
+        if (super.x <= 0 && dx < 0) {
+            dx = 0;
+        }
+        if (((super.x + 30) >= GamePanel.PWIDTH) && (dx > 0)) {
+            dx = 0;
+        }
         super.x += dx;
         super.y += dy;
     }
-    
-    public void resetHealth(){
+
+    public void resetMarine() {
         this.health = 100;
+        jump = movingLeft = movingRight = false;
+        jumpHeight = 0;
+        jump = false;
+        dy = -7;
+        super.y = GamePanel.PHEIGHT - 30;
+        super.x = GamePanel.PWIDTH/2;
     }
 
     public static Image getImage(String fileName) {
@@ -89,6 +108,5 @@ public class Marine extends GameFigure {
     public Rectangle2D.Double getCollisionBox() {
         return new Rectangle2D.Double(super.x, super.y, super.size, super.size);
     }
-
 
 }
