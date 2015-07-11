@@ -17,11 +17,6 @@ public class Marine extends GameFigure {
     private int dy = -7;
     public boolean jump, movingLeft, movingRight;
 
-    public void stopMoving() {
-        jump = movingLeft = movingRight = false;
-        super.y = GamePanel.PHEIGHT - 30;
-    }
-
     public Marine(int x, int y, int size) {
         super(x, y, size);
         this.health = 100;
@@ -60,7 +55,7 @@ public class Marine extends GameFigure {
 
     public void jump() {
         jumpHeight += dy;
-        if (jumpHeight <= -70) {
+        if (jumpHeight <= -100) {
             dy = 7;
         }
         if (jumpHeight == 0) {
@@ -83,8 +78,14 @@ public class Marine extends GameFigure {
         super.y += dy;
     }
 
-    public void resetHealth() {
+    public void resetMarine() {
         this.health = 100;
+        jump = movingLeft = movingRight = false;
+        jumpHeight = 0;
+        jump = false;
+        dy = -7;
+        super.y = GamePanel.PHEIGHT - 30;
+        super.x = GamePanel.PWIDTH/2;
     }
 
     public static Image getImage(String fileName) {

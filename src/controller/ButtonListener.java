@@ -18,8 +18,7 @@ public class ButtonListener implements ActionListener {
         } 
         else if(ae.getSource() == GameOverWindow.restartButton){      
             Main.gameOverWindow.setVisible(false);
-            Main.gameData.marine.resetHealth();
-            Main.gameData.marine.stopMoving();
+            Main.gameData.marine.resetMarine();
             
             Main.gameData.setBossSpawned(false);
             //Main.gameData.boss.resetHealth();
