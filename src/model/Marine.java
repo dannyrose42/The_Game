@@ -17,6 +17,10 @@ public class Marine extends GameFigure {
     private int dy = -7;
     public boolean jump, movingLeft, movingRight;
 
+    public void stopMoving(){
+        jump = movingLeft = movingRight = false;
+    }
+
     public Marine(int x, int y, int size) {
         super(x, y, size);
         this.health = 100;
